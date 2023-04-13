@@ -1,12 +1,14 @@
 import * as React from "react";
 import { useContext } from "react";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import List from "@mui/material/List";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
+import {
+  Box,
+  List,
+  Grid,
+  Typography,
+  IconButton,
+  CircularProgress,
+} from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import TodoTask from "./TodoTask";
 import AddTask from "./AddTask";
@@ -43,39 +45,47 @@ export default function InteractiveList() {
       sx={{
         flexGrow: 1,
         background: "#f1f1f1",
-        marginTop: "30px",
-        minHeight: "calc(100vh - 30px)",
+        marginTop: "35px",
+        minHeight: "calc(100vh - 35px)",
+        overflowX:'hidden'
       }}
     >
       <Grid
         container
         spacing={2}
-        sx={{ flexWrap: "wrap", flexDirection: "row" }}
+        sx={{ flexWrap: "nowrap", flexDirection: "row" , overflowX:'auto' , width:'auto' , minHeight: "calc(100vh - 30px)"}}
+        className="todo-scroll"
       >
         {todos.map((todo, index) => (
-          <Grid key={index} item sm={4} md={4}>
-            <Box sx={{ pt: "20px", background: "#fff" }}>
+          <Grid key={index} item sm={4} md={4} minWidth="30vw">
+            <Box sx={{ background: "#fff" }}>
               <Box sx={{ position: "relative" }}>
                 <Typography
                   sx={{
                     mt: 4,
                     pb: 2,
+                    pt:2,
                     textAlign: "center",
                     borderBottom: "1px solid #ddd",
                   }}
                   variant="h6"
                   component="div"
                 >
-                  {todo.title}
-                  {" "}
-                  {todo?.date && <Box component="span">- ({todo.date})</Box>}
+                  {todo.title}{" "}
+                  {todo?.date && <Box component="span" sx={{
+                    background:'#f5f5f5',
+                    fontSize:'14px',
+                    caolor:'#333',
+                    padding:'7px 10px',
+                    borderRadius:'6px'
+                  }}> ({todo.date})</Box>}
                 </Typography>
                 <IconButton
                   edge="end"
                   aria-label="delete"
                   sx={{
                     position: "absolute",
-                    top: "0",
+                    top: "14px",
                     right: "15px",
                   }}
                   onClick={() => deleteTodo(todo._id)}
@@ -87,7 +97,7 @@ export default function InteractiveList() {
                 <AddTask todoId={todo?._id} />
               </Box>
               <List
-                sx={{ maxHeight: "50vh", overflowY: "scroll" }}
+                sx={{ maxHeight: "calc(100vh - 40px)", overflowY: "scroll" }}
                 className="task-scroll"
               >
                 {todo?.tasks.length === 0 ? (

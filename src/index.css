@@ -12,28 +12,40 @@ code {
     monospace;
 }
 
+/* width */
+.todo-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+.todo-scroll::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px rgb(214, 214, 214); 
+  border-radius: 5px;
+}
+ 
+/* Handle */
+.todo-scroll::-webkit-scrollbar-thumb {
+  background: #ddd; 
+  border-radius: 20px;
+}
 
 /* width */
 .task-scroll::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 /* Track */
 .task-scroll::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  box-shadow: inset 0 0 2px rgb(214, 214, 214); 
   border-radius: 5px;
 }
  
 /* Handle */
 .task-scroll::-webkit-scrollbar-thumb {
   background: #ddd; 
-  border-radius: 8px;
+  border-radius: 20px;
 }
 
-/* Handle on hover */
-.task-scroll::-webkit-scrollbar-thumb:hover {
-  background: #eee; 
-}
 .react-date-picker{
   width: 100%;
   height: 50px;

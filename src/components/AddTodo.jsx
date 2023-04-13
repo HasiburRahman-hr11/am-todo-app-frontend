@@ -19,7 +19,7 @@ const AddTodo = ({ handleClose }) => {
 
   const [inputValue, setInputValue] = useState("");
   const [date, setDate] = useState(new Date());
-  const [loading , setLoading] = useState(false)
+  const [loading , setLoading] = useState(false);
 
   const handleSubmit = async () => {
     if (inputValue === "") {

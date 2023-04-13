@@ -120,7 +120,7 @@ const SignIn = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <Box sx={{ mt: "30px", textAlign: "center" }}>
-            <Button variant="contained" onClick={handleSubmit}>
+            <Button variant="contained" onClick={handleSubmit} sx={{padding:'10px 20px' , minWidth:'100px'}} >
               {loading ? (
                 <CircularProgress
                   sx={{
