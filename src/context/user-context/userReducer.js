@@ -1,4 +1,4 @@
-const todoReducer = (state, action) => {
+const userReducer = (state, action) => {
   switch (action.type) {
     // CREATE User
     case "CREATE_USER_START":
@@ -50,4 +50,4 @@ const todoReducer = (state, action) => {
   }
 };
 
-export default todoReducer;
+export default userReducer;
