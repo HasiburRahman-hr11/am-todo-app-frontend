@@ -28,7 +28,7 @@ export default function InteractiveList() {
       dispatch(deleteTodoStart());
       try {
         const { data } = await axios.delete(
-          `http://localhost:8000/delete-todo/${todoId}?userId=${user._id}`
+          `https://am-todo-app-api.onrender.com/delete-todo/${todoId}?userId=${user._id}`
         );
         dispatch(deleteTodoSuccess(data));
       } catch (error) {

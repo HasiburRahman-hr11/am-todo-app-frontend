@@ -38,7 +38,7 @@ const AddTodo = ({ handleClose }) => {
     setLoading(true);
 
     try {
-      const { data } = await axios.post("http://localhost:8000/add-todo", todo);
+      const { data } = await axios.post("https://am-todo-app-api.onrender.com/add-todo", todo);
       dispatch(addTodoSuccess(data));
       setInputValue("");
       setLoading(false);

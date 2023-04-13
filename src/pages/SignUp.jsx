@@ -1,5 +1,11 @@
 import React, { useContext, useState } from "react";
-import { Box, Typography, TextField, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  CircularProgress,
+} from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/user-context/userContext";
 import axios from "axios";
@@ -13,6 +19,7 @@ const SignUp = () => {
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -22,7 +29,7 @@ const SignUp = () => {
     if (!username || !email || !password) {
       return alert("Please fill up the form correctly");
     }
-    if(password.length < 5){
+    if (password.length < 5) {
       return alert("Password must be at least 5 charecters");
     }
     let userData = {
@@ -30,19 +37,22 @@ const SignUp = () => {
       email: email,
       password: password,
     };
+    setLoading(true);
 
     try {
       const { data } = await axios.post(
-        "http://localhost:8000/user/add-user",
+        "https://am-todo-app-api.onrender.com/user/add-user",
         userData
       );
       if (data?.email) {
+        setLoading(false);
         navigate("/signin");
-      }else{
-        alert('Something went wrong!')
+      } else {
+        alert("Something went wrong!");
       }
     } catch (error) {
       alert(error?.response?.data?.message);
+      setLoading(false);
     }
   };
   if (user?.email) {
@@ -114,7 +124,17 @@ const SignUp = () => {
 
           <Box sx={{ mt: "30px", textAlign: "center" }}>
             <Button variant="contained" onClick={handleSubmit}>
-              Signup
+              {loading ? (
+                <CircularProgress
+                  sx={{
+                    color: "#fff",
+                    width: "25px !important",
+                    height: "25px !important",
+                  }}
+                />
+              ) : (
+                "Signup"
+              )}
             </Button>
           </Box>
 

@@ -1,8 +1,18 @@
 import React, { useContext, useState } from "react";
-import { Box, Typography, TextField, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  CircularProgress,
+} from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/user-context/userContext";
-import { createUserFailed, createUserStart, createUserSuccess } from "../context/user-context/userAction";
+import {
+  createUserFailed,
+  createUserStart,
+  createUserSuccess,
+} from "../context/user-context/userAction";
 import axios from "axios";
 
 const textFieldStyle = {
@@ -13,6 +23,7 @@ const textFieldStyle = {
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -26,11 +37,11 @@ const SignIn = () => {
       email: email,
       password: password,
     };
-
+    setLoading(true);
     try {
       dispatch(createUserStart());
       const { data } = await axios.post(
-        "http://localhost:8000/user/login",
+        "https://am-todo-app-api.onrender.com/user/login",
         userData
       );
       if (data?.email) {
@@ -43,11 +54,13 @@ const SignIn = () => {
           })
         );
         dispatch(createUserSuccess(data));
+        setLoading(false);
         navigate("/");
       }
     } catch (error) {
       alert(error?.response?.data?.message);
       dispatch(createUserFailed(error));
+      setLoading(false);
     }
   };
 
@@ -108,7 +121,17 @@ const SignIn = () => {
           />
           <Box sx={{ mt: "30px", textAlign: "center" }}>
             <Button variant="contained" onClick={handleSubmit}>
-              Signin
+              {loading ? (
+                <CircularProgress
+                  sx={{
+                    color: "#fff",
+                    width: "25px !important",
+                    height: "25px !important",
+                  }}
+                />
+              ) : (
+                "Signin"
+              )}
             </Button>
           </Box>
           <Typography

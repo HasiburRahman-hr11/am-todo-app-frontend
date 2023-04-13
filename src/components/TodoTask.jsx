@@ -20,7 +20,7 @@ const TodoTask = ({ task, todoId }) => {
       dispatch(deleteTaskStart());
       try {
         const { data } = await axios.delete(
-          `http://localhost:8000/delete-task/${todoId}?userId=${user._id}&taskId=${task._id}`);
+          `https://am-todo-app-api.onrender.com/delete-task/${todoId}?userId=${user._id}&taskId=${task._id}`);
         dispatch(deleteTaskSuccess(data));
       } catch (error) {
         console.log(error);

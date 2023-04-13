@@ -21,7 +21,7 @@ const Home = () => {
     const getAllTodos = async () => {
       dispatch(getTodosStart());
       try {
-        const { data } = await axios.get(`http://localhost:8000/all-todos/${user._id}`);
+        const { data } = await axios.get(`https://am-todo-app-api.onrender.com/all-todos/${user._id}`);
         dispatch(getTodosSuccess(data));
       } catch (error) {
         console.log(error);

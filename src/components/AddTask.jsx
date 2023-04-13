@@ -24,7 +24,7 @@ const AddTask = ({ todoId }) => {
       try {
         let task = { title: inputValue };
         const { data } = await axios.post(
-          `http://localhost:8000/add-task/${todoId}?userId=${user._id}`,
+          `https://am-todo-app-api.onrender.com/add-task/${todoId}?userId=${user._id}`,
           { task: task }
         );
         dispatch(addTaskSuccess(data));
