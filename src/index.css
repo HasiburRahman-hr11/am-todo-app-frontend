@@ -11,3 +11,35 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/* width */
+.task-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.task-scroll::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 5px;
+}
+ 
+/* Handle */
+.task-scroll::-webkit-scrollbar-thumb {
+  background: #ddd; 
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+.task-scroll::-webkit-scrollbar-thumb:hover {
+  background: #eee; 
+}
+.react-date-picker{
+  width: 100%;
+  height: 50px;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+.react-date-picker__wrapper{
+  border: none;
+}
